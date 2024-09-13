@@ -60,14 +60,14 @@ func AsciiArt(args ...string) string {
 	// Create the map for the ASCII art
 	asciiArtMap := art.AssignArt(banner)
 
+	// Convert Windows line endings to Unix line endings
+	text = strings.ReplaceAll(text, "\r\n", "\\n")
+
 	// Check if the input consists of only ASCII characters
 	if !art.IsAsciiInput(text, asciiArtMap) {
 		fmt.Println("Only ASCII characters are accepted as input")
 		return ""
 	}
-
-	// Handle new lines properly
-	text = strings.ReplaceAll(text, "\r\n", "\\n") // Convert Windows line endings to Unix line endings
 
 	// Split the input wherever a new line (\n) is detected
 	textArr := strings.Split(text, "\\n")
