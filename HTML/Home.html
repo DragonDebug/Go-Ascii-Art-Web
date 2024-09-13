@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Art</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .myclass {
+            width: 100%; /* Full width */
+            height: 300px; /* Set a fixed height for the text area */
+            font-family: monospace; /* Use monospace font for ASCII art */
+            overflow: auto; /* Allow both horizontal and vertical scrolling */
+            white-space: pre; /* Preserve whitespace and formatting for ASCII art */
+            margin-bottom: 20px;
+            resize: none; /* Prevent user from resizing the text area */
+        }
+        .inputtxt {
+            width: 100%; /* Make the input take up the full window width */
+            height: 35px;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .marginsSP {
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ASCII Art</h1>
+    
+    <!-- Input Form -->
+    <form action="/" method="POST">
+        <label for="inputText">Input Text:</label>
+        <!-- Change input text to a textarea for multiline input -->
+        <textarea class="inputtxt" id="inputText" name="inputText" placeholder="Enter text to convert to ASCII Art" required></textarea>
+        
+        <fieldset>
+            <legend>ASCII Art Type</legend>
+            <input type="radio" name="banner" id="standard" value="standard" required/>
+            <label for="standard">standard</label>
+            <input type="radio" name="banner" id="shadow" value="shadow" required/>
+            <label for="shadow">shadow</label>
+            <input type="radio" name="banner" id="thinkertoy" value="thinkertoy" required/>
+            <label for="thinkertoy">thinkertoy</label>
+        </fieldset>
+
+        <input class="marginsSP" type="submit" value="Generate ASCII Art">
+    </form>
+    
+
+
+    <!-- Output Text Area (always visible) -->
+    <label for="outputText">ASCII Art Output:</label>
+    <textarea class="myclass" id="outputText" readonly>{{.Output}}</textarea>
+
+</body>
+</html>
