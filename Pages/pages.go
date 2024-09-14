@@ -23,7 +23,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
         // Get the input text from the form
         inputText := r.FormValue("inputText")
 		banner:= r.FormValue("banner")
-        log.Println("Received input:", inputText, banner)
+        log.Println("Received input:\n", inputText, banner)
 
         // Check if input is coming through
         if inputText == "" {
@@ -32,7 +32,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
         // Convert input to ASCII Art (replace this with your actual ASCII art logic)
         output := asciiart.AsciiArt(inputText, banner)
-        log.Println("Generated ASCII Art:", output)
+        log.Println("Generated ASCII Art:\n", output)
 
         // Create a PageData instance and pass the output
         data := PageData{
