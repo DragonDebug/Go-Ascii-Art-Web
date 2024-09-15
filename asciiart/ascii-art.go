@@ -6,12 +6,15 @@ import (
 	"strings"
 )
 
+const folderPath string = "./banners/"
+
 func AsciiArt(args ...string) string {
 	// Declare the necessary variables
 	var text, banner, option, fileName string
 
 	// Handling cases based on the number of arguments
-	if len(args) == 3 {
+	switch len(args) {
+	case 3:
 		option = args[0]
 		text = args[1]
 		banner = args[2]
@@ -20,18 +23,18 @@ func AsciiArt(args ...string) string {
 		var err error
 		fileName, err = art.VarifyOption(option)
 		if err != nil {
-			fmt.Println("Usage: go run . [OPTION] [STRING] [BANNER]\n\nX: go run . --output=<fileName.txt> something standard")
-			return "" // Return on error
+			fmt.Println(err)
+			return ""
 		}
 
 		// Verify banner
 		banner, err = art.VarifyBanner(banner)
 		if err != nil {
-			fmt.Println("Usage: go run . [OPTION] [STRING] [BANNER]\n\nX: go run . --output=<fileName.txt> something standard")
-			return "" // Return on error
+			fmt.Println(err)
+			return ""
 		}
 
-	} else if len(args) == 2 {
+	case 2:
 		text = args[0]
 		banner = args[1]
 
@@ -39,15 +42,16 @@ func AsciiArt(args ...string) string {
 		var err error
 		banner, err = art.VarifyBanner(banner)
 		if err != nil {
-			fmt.Println("Usage: go run . [OPTION] [STRING] [BANNER]\n\nX: go run . --output=<fileName.txt> something standard")
-			return "" // Return on error
+			fmt.Println(err)
+			return ""
 		}
 
-	} else if len(args) == 1 {
+	case 1:
 		text = args[0]
 		banner = "standard.txt" // Default banner
-	} else {
-		fmt.Println("Usage: go run . [OPTION] [STRING] [BANNER]\n\nX: go run . --output=<fileName.txt> something standard")
+
+	default:
+		fmt.Println("Incorrect number of arguments")
 		return ""
 	}
 
@@ -56,6 +60,9 @@ func AsciiArt(args ...string) string {
 		fmt.Println("No input text provided")
 		return ""
 	}
+
+	//Adding the folder path to the banner
+	banner = folderPath + banner
 
 	// Create the map for the ASCII art
 	asciiArtMap := art.AssignArt(banner)
