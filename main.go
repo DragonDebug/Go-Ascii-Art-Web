@@ -1,11 +1,11 @@
 package main
 
 import (
-	asciiartweb "asciiartweb/Pages"
+	"asciiartweb/handlers"
 	"net/http"
 )
 
 func main() {
-	http.HandleFunc("/", asciiartweb.Home)
+	http.HandleFunc("/", handlers.Home)
 	_ = http.ListenAndServe(":8080", nil)
 }

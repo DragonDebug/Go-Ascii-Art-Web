@@ -3,68 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="html/css/styles.css">
     <title>ASCII Art</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        label {
-            font-weight: bold;
-        }
-        .myclass {
-            width: 100%; /* Full width */
-            height: 300px; /* Set a fixed height for the text area */
-            font-family: monospace; /* Use monospace font for ASCII art */
-            overflow: auto; /* Allow both horizontal and vertical scrolling */
-            white-space: pre; /* Preserve whitespace and formatting for ASCII art */
-            margin-bottom: 20px;
-            resize: none; /* Prevent user from resizing the text area */
-        }
-        .inputtxt {
-            width: 100%; /* Make the input take up the full window width */
-            height: 35px;
-            font-size: 1em;
-            margin-bottom: 10px;
-        }
-        input[type="submit"] {
-            padding: 5px 10px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-        .marginsSP {
-            margin-top: 10px;
-            margin-bottom: 25px;
-        }
+/* General Page Styling */
+body {
+    background-image: url('https://images.saymedia-content.com/.image/t_share/MTkyOTkyMzE2OTQ3MjQ0MjUz/website-background-templates.jpg');
+    background-size: cover; /* Ensures the background covers the entire page */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background from repeating */
+
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-family: cursive;
+    font-size: 7.5em;
+    color: #444;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+/* Form Container Styling */
+form {
+    width:50%;
+    background-color: #90d1fc;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+form:hover{
+    width:50%;
+    background-color: #6ac0fa;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+label[for="inputText"] {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 1.9em;
+}
+
+label[for="outputText"] {
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.9em;
+}
+
+/* Input box Styling */
+.inputbox {
+    width: 90%;
+    height: 80px;
+    font-size: 1.2em;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    resize: none;
+}
+
+.inputbox:focus {
+    border-color: #000000;
+    outline:#000000;
+    box-shadow: 0 0 8px rgba(108, 99, 255, 0.2);
+}
+
+/* Radio Button Styling */
+fieldset {
+    border: none;
+    margin-bottom: 20px;
+}
+
+legend {
+    font-size: 1.2em;
+    color: #555;
+}
+
+.asciitypeinput[type="radio"] {
+    margin-right: 55px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+label[for="standard"], 
+label[for="shadow"], 
+label[for="thinkertoy"] {
+    margin-right: 20px;
+    font-size: 1.5em;
+    color: #555;
+}
+
+input.button [type="submit"]{
+    cursor: pointer;
+}
+
+
+/* Text Area for ASCII Output */
+textarea.output {
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    width: 80%;
+    height: 250px;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    white-space: pre;
+    resize: none;
+}
+
+.asciitypeinput {
+    border: 2px solid #000000;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.asciitypeinput legend {
+    font-family:fantasy;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.radio-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff; /* Green background */
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1em;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.radio-btn:hover {
+    background-color: #d7f9ff; /* Darker green on hover */
+    transform: scale(1.05); /* Slight scaling effect */
+
+}
+
+.radio-btn:active {
+    transform: scale(0.95); /* Scale down when clicked */
+}
+
+input[type="radio"] {
+    display: none; /* Hide actual radio buttons */
+}
+
+input[type="radio"]:checked + .radio-btn {
+    background-color: #4ba2ff; /* Change to blue when selected */
+    color: rgb(0, 0, 0);
+}
+
+
     </style>
+
 </head>
 <body>
-    <h1>ASCII Art</h1>
-    
+<div>
+    <h1>ASCII Art Generator</h1>
+</div>
+
+
     <!-- Input Form -->
+
     <form action="/" method="POST">
         <label for="inputText">Input Text:</label>
         <!-- Change input text to a textarea for multiline input -->
-        <textarea class="inputtxt" id="inputText" name="inputText" placeholder="Enter text to convert to ASCII Art" required></textarea>
+        <textarea class="inputbox" id="inputText" name="inputText" placeholder="Enter text to convert to ASCII Art" required></textarea>
         
-        <fieldset>
+        <fieldset class="asciitypeinput">
             <legend>ASCII Art Type</legend>
-            <input type="radio" name="banner" id="standard" value="standard" required/>
-            <label for="standard">standard</label>
-            <input type="radio" name="banner" id="shadow" value="shadow" required/>
-            <label for="shadow">shadow</label>
-            <input type="radio" name="banner" id="thinkertoy" value="thinkertoy" required/>
-            <label for="thinkertoy">thinkertoy</label>
+            
+            <input type="radio" name="banner" id="standard" value="standard" required />
+            <label for="standard" class="radio-btn">Standard</label>
+        
+            <input type="radio" name="banner" id="shadow" value="shadow" required />
+            <label for="shadow" class="radio-btn">Shadow</label>
+        
+            <input type="radio" name="banner" id="thinkertoy" value="thinkertoy" required />
+            <label for="thinkertoy" class="radio-btn">Thinkertoy</label>
         </fieldset>
+        
 
-        <input class="marginsSP" type="submit" value="Generate ASCII Art">
+        <input class="button" type="submit" value="Generate ASCII Art">
     </form>
-    
+
 
 
     <!-- Output Text Area (always visible) -->
     <label for="outputText">ASCII Art Output:</label>
-    <textarea class="myclass" id="outputText" readonly>{{.Output}}</textarea>
+    <textarea class="output" id="outputText" readonly>{{.Output}}</textarea>
+
 
 </body>
 </html>
